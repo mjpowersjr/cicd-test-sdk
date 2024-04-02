@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix: update runtime deps",
-  "packageName": "@mjpowersjr/cicd-test-sdk",
-  "email": "mjpowersjr@gmail.com",
-  "dependentChangeType": "patch"
-}

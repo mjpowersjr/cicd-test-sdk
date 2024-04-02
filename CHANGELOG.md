@@ -1,8 +1,16 @@
 # Change Log - @mjpowersjr/cicd-test-sdk
 
-This log was last generated on Tue, 02 Apr 2024 19:13:27 GMT and should not be manually modified.
+This log was last generated on Tue, 02 Apr 2024 19:43:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.7
+
+Tue, 02 Apr 2024 19:43:59 GMT
+
+### Patches
+
+- fix: update runtime deps (mjpowersjr@gmail.com)
 
 ## 0.0.6
 
