@@ -7,22 +7,20 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run pull-protofile-submodule.sh
-      shell: bash
-      run: scripts/pull-protofile-submodule.sh
-
-    - name: Find current profile commit hash
-      id: vars
-      shell: bash
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-    - name: Commit changes
+    - name: Setup Git credentials
       shell: bash
       run: |
         git config --global user.email "noreply@github.com"
         git config --global user.name "GitHub Actions"
-        git add .
-        git commit -m "Update protofiles to ${{ steps.vars.outputs.sha_short }}"
+
+    - name: Run pull-protofile-submodule.sh
+      shell: bash
+      env:
+        SUBMODULE_PATH: proto-submodule
+        SUBMODULE_URL: https://github.com/mjpowersjr/cicd-test-protos
+        CHECKOUT_TARGET: main
+      run: scripts/update-submodule.sh
+
     # - name: Check exit code
     #   shell: bash
     #   run: exit ${{ steps.update-protos.outcome }}
