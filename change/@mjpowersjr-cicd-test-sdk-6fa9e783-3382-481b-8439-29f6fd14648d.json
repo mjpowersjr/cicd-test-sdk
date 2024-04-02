@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Change files",
-  "packageName": "@mjpowersjr/cicd-test-sdk",
-  "email": "mjpowersjr@gmail.com",
-  "dependentChangeType": "patch"
-}
