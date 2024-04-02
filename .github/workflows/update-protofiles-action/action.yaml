@@ -5,6 +5,8 @@ runs:
   using: 'composite'
   steps:
     - name: Checkout code
+      with:
+        submodules: 'recursive'
       uses: actions/checkout@v2
 
     - name: Setup Git credentials
