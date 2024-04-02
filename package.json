@@ -1,5 +1,6 @@
 {
   "name": "@mjpowersjr/cicd-test-sdk",
+  "description": "A test SDK for CI/CD",
   "packageManager": "yarn@4.1.1",
   "main": "dist/index.js",
   "repository": {
