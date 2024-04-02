@@ -27,6 +27,7 @@ fi
 
 # If the output directory does not exist, create it
 if [ ! -d "${OUT_DIR}" ]; then
+    echo "Creating output directory: ${OUT_DIR}"
     mkdir -p "${OUT_DIR}"
 fi
 
@@ -44,7 +45,7 @@ protoc \
     --ts_proto_opt=outputIndex=true \
     --ts_proto_opt=outputServices=grpc-js \
     --ts_proto_opt=stringEnums=true \
-    --ts_proto_out=${OUT_DIR} \
+    --ts_proto_out=${GIT_ROOT}/${OUT_DIR} \
     $(find . -name "*.proto")
 
 echo "Finished generating TypeScript files from .proto files."
