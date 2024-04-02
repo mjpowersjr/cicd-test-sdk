@@ -3,9 +3,9 @@ import * as _m0 from "protobufjs/minimal";
 
 export interface TestMessage {
   fieldOne: string;
-  /** add comment */
+  /** Field Two */
   fieldTwo: string;
-  /** Add comment */
+  /** Field Three */
   fieldThree: string;
 }
 
