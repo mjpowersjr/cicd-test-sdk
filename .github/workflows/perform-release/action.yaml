@@ -1,0 +1,35 @@
+name: perform-release
+description: Perform a release
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Build
+      shell: bash
+      run: scripts/build.sh
+
+    - name: Check for new version
+      shell: bash
+      id: check-version
+      run: |
+        npm install -g beachball
+        beachball change --path packages/my-package --no-push --no-publish
+
+    - name: Publish new version
+      shell: bash
+      if: steps.check-version.outputs.version_changed == 'true'
+      run: |
+        npm install -g @actions/github
+        node publish.js

@@ -1,0 +1,16 @@
+name: generate-code
+description: Generate code from protofiles
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run build-generate-code.sh
+      shell: bash
+      run: scripts/build-generate-code.sh
+
+    - name: Check exit code
+      shell: bash
+      run: exit ${{ steps.generate-code.outcome }}

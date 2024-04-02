@@ -1,0 +1,3 @@
+[submodule "proto-submodule"]
+	path = proto-submodule
+	url = https://github.com/mjpowersjr/cicd-test-protos

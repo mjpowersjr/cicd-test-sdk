@@ -1,0 +1,19 @@
+{
+  "name": "@mjpowersjr/cicd-test-sdk",
+  "packageManager": "yarn@4.1.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run clean && tsc && npm run build:after",
+    "build:after": "./scripts/copy-protofiles.sh",
+    "build:watch": "tsc -w",
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "beachball": "^2.41.0",
+    "rimraf": "^5.0.5",
+    "ts-proto": "^1.171.0",
+    "typescript": "^5.4.3"
+  }
+}

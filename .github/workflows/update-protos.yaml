@@ -1,0 +1,18 @@
+name: Update Protos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release-from-protos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: update-protofiles
+        uses: ./.github/workflows/update-protofiles-action
+
+      - name: generate-code
+        uses: ./.github/workflows/generate-code
+
+      - name: perform-release
+        uses: ./.github/workflows/perform-release

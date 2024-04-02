@@ -1,0 +1,16 @@
+name: update-protofiles
+description: Update protofiles submodule
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run pull-protos-submodule.sh
+      shell: bash
+      run: scripts/pull-protos-submodule.sh
+
+    - name: Check exit code
+      shell: bash
+      run: exit ${{ steps.update-protos.outcome }}
