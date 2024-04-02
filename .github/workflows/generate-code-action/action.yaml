@@ -39,7 +39,7 @@ runs:
         OUT_DIR: src/generated
       run: |
         scripts/build-generate-code.sh $SRC_DIR $OUT_DIR
-        git commit -am "update generated code" $OUT_DIR
+        git commit -am "update generated code"
 
     - name: Generate change files
       shell: bash
