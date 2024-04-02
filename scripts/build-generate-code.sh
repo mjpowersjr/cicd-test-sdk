@@ -31,6 +31,15 @@ if [ ! -d "${OUT_DIR}" ]; then
     mkdir -p "${OUT_DIR}"
 fi
 
+# if protoc is not installed, exit
+if ! command -v protoc &> /dev/null
+then
+    echo "Command: protoc not found"
+    echo "Please install protoc before running this script"
+    echo "https://grpc.io/docs/protoc-installation/"
+    exit 1
+fi
+
 # Change to the directory holding all .proto files
 pushd "${SRC_DIR}" > /dev/null
 
