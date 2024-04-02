@@ -5,10 +5,11 @@ export interface TestMessage {
   fieldOne: string;
   /** add comment */
   fieldTwo: string;
+  fieldThree: string;
 }
 
 function createBaseTestMessage(): TestMessage {
-  return { fieldOne: "", fieldTwo: "" };
+  return { fieldOne: "", fieldTwo: "", fieldThree: "" };
 }
 
 export const TestMessage = {
@@ -18,6 +19,9 @@ export const TestMessage = {
     }
     if (message.fieldTwo !== "") {
       writer.uint32(18).string(message.fieldTwo);
+    }
+    if (message.fieldThree !== "") {
+      writer.uint32(26).string(message.fieldThree);
     }
     return writer;
   },
@@ -43,6 +47,13 @@ export const TestMessage = {
 
           message.fieldTwo = reader.string();
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.fieldThree = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -56,6 +67,7 @@ export const TestMessage = {
     return {
       fieldOne: isSet(object.fieldOne) ? globalThis.String(object.fieldOne) : "",
       fieldTwo: isSet(object.fieldTwo) ? globalThis.String(object.fieldTwo) : "",
+      fieldThree: isSet(object.fieldThree) ? globalThis.String(object.fieldThree) : "",
     };
   },
 
@@ -67,6 +79,9 @@ export const TestMessage = {
     if (message.fieldTwo !== "") {
       obj.fieldTwo = message.fieldTwo;
     }
+    if (message.fieldThree !== "") {
+      obj.fieldThree = message.fieldThree;
+    }
     return obj;
   },
 
@@ -77,6 +92,7 @@ export const TestMessage = {
     const message = createBaseTestMessage();
     message.fieldOne = object.fieldOne ?? "";
     message.fieldTwo = object.fieldTwo ?? "";
+    message.fieldThree = object.fieldThree ?? "";
     return message;
   },
 };
