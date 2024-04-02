@@ -48,6 +48,4 @@ runs:
       env:
         NODE_AUTH_TOKEN: ${{ inputs.token }}
       run: |
-        yarn beachball change --all --type patch --message 'updated generated code'
-        git push
         yarn beachball publish

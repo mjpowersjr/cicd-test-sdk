@@ -37,8 +37,23 @@ runs:
       env:
         SRC_DIR: proto-submodule
         OUT_DIR: src/generated
-      run: scripts/build-generate-code.sh $SRC_DIR $OUT_DIR
+      run: |
+        scripts/build-generate-code.sh $SRC_DIR $OUT_DIR
+        git commit -am "update generated code" $OUT_DIR
 
-    - name: Check exit code
+    - name: Generate change files
       shell: bash
-      run: exit ${{ steps.generate-code.outcome }}
+      env:
+        SRC_DIR: proto-submodule
+        OUT_DIR: src/generated
+      run: |
+        yarn beachball change --verbose --type patch --message 'updated generated code'
+
+    - name: Push changes to git repo
+      shell: bash
+      run: |
+        git push
+
+    # - name: Check exit code
+    #   shell: bash
+    #   run: exit ${{ steps.generate-code.outcome }}
