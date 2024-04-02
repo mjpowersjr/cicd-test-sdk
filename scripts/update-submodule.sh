@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# This script is used to update a submodule to a specific commit, tag, or HEAD.
+# If the submodule does not exist, it will be added to the repository.
+# Usage: ./update-submodule.sh <submodule_path> <submodule_url> <commit/tag/HEAD>
+
+
 # Display usage if not enough arguments are provided
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <submodule_path> <submodule_url> <commit/tag/HEAD>"
