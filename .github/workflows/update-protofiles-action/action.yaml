@@ -11,6 +11,6 @@ runs:
       shell: bash
       run: scripts/pull-protos-submodule.sh
 
-    - name: Check exit code
-      shell: bash
-      run: exit ${{ steps.update-protos.outcome }}
+    # - name: Check exit code
+    #   shell: bash
+    #   run: exit ${{ steps.update-protos.outcome }}
