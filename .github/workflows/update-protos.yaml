@@ -11,11 +11,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: setup-git-credentials
+        uses: ./.github/workflows/setup-git-credentials-action
+
       - name: update-protofiles
         uses: ./.github/workflows/update-protofiles-action
 
       - name: generate-code
-        uses: ./.github/workflows/generate-code
+        uses: ./.github/workflows/generate-code-action
 
       - name: perform-release
-        uses: ./.github/workflows/perform-release
+        uses: ./.github/workflows/perform-release-action

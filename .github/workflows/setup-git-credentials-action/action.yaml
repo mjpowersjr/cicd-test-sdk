@@ -1,0 +1,11 @@
+name: setup-git-credentials
+description: Setup Git credentials
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Git credentials
+      shell: bash
+      run: |
+        git config --global user.email "noreply@github.com"
+        git config --global user.name "GitHub Actions"
