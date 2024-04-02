@@ -16,6 +16,7 @@ runs:
         node-version: '20'
 
     - name: Install dependencies with Yarn
+      shell: bash
       run: yarn install
 
     - name: Run build-generate-code.sh
