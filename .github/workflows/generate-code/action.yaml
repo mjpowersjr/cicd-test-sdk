@@ -7,9 +7,16 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - uses: arduino/setup-protoc@v1
+      with:
+        version: '3.x'
+
     - name: Run build-generate-code.sh
       shell: bash
-      run: scripts/build-generate-code.sh
+      env:
+        SRC_DIR: proto-submodule
+        OUT_DIR: src/generated
+      run: scripts/build-generate-code.sh $SRC_DIR $OUT_DIR
 
     - name: Check exit code
       shell: bash

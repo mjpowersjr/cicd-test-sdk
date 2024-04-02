@@ -9,27 +9,29 @@ GIT_ROOT=$(git rev-parse --show-toplevel)
 # Path to Protoc Plugin
 PLUGIN_PATH="${GIT_ROOT}/node_modules/.bin/protoc-gen-ts_proto"
 
-# Directory holding all .proto files
-SRC_DIR="${PACKAGE_ROOT}/proto-submodule"
+# Accept INPUT / OUTPUT directories as arguments
+SRC_DIR=$1
+OUT_DIR=$2
 
-# Directory to write generated code (.ts files)
-OUT_DIR="${PACKAGE_ROOT}/src/generated"
+# provide usage statement if not enough arguments are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <input_directory> <output_directory>"
+    exit 1
+fi
+
+# If the input directory does not exist, exit
+if [ ! -d "${SRC_DIR}" ]; then
+    echo "Input directory does not exist: ${SRC_DIR}"
+    exit 1
+fi
 
 # If the output directory does not exist, create it
 if [ ! -d "${OUT_DIR}" ]; then
     mkdir -p "${OUT_DIR}"
 fi
 
-# # Clean all existing generated files
-# rm ${OUT_DIR}/grpc/*.ts 2> /dev/null
-# rm ${OUT_DIR}/nest/*.ts 2> /dev/null
-
 # Change to the directory holding all .proto files
 pushd "${SRC_DIR}" > /dev/null
-
-# echo "PLUGIN_PATH: ${PLUGIN_PATH}"
-# echo "SRC_DIR: ${SRC_DIR}"
-# echo "OUT_DIR: ${OUT_DIR}"
 
 echo "Generating TypeScript files from .proto files..."
 # Generate all messages
