@@ -7,29 +7,31 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - uses: arduino/setup-protoc@v1
       with:
-        node-version: 14
+        version: '3.x'
 
-    - name: Install dependencies
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Get yarn cache directory path
       shell: bash
-      run: npm ci
+      id: yarn-cache-dir-path
+      run: echo "dir=$(yarn config --json cacheFolder)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v2
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ fromJson(steps.yarn-cache-dir-path.outputs.dir).effective }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install dependencies with Yarn
+      shell: bash
+      run: yarn install
 
     - name: Build
       shell: bash
-      run: scripts/build.sh
-
-    - name: Check for new version
-      shell: bash
-      id: check-version
-      run: |
-        npm install -g beachball
-        beachball change --path packages/my-package --no-push --no-publish
-
-    - name: Publish new version
-      shell: bash
-      if: steps.check-version.outputs.version_changed == 'true'
-      run: |
-        npm install -g @actions/github
-        node publish.js
+      run: yarn build
