@@ -51,11 +51,11 @@ behind=$(git rev-list --count $branch..origin/$branch)
 
 # Print the results
 if [ "$behind" -gt 0 ]; then
-  echo "Your local branch is $behind commits behind the remote. Updating..."
+  echo "Your submodule is $behind commits behind the remote. Updating..."
   git checkout --quiet "${PROTO_SUBMODULE_COMMIT}" > /dev/null
   git pull --quiet
   exit 0
 else
-  echo "Your local branch is up to date with the remote."
+  echo "Your submodule is up to date with the remote."
   exit 0
 fi
