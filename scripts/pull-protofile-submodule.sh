@@ -41,8 +41,6 @@ fi
 # update the proto submodule to the latest commit
 cd "${PROTO_SUBMODULE_DIR}"
 git fetch --quiet origin
-git checkout --quiet "${PROTO_SUBMODULE_COMMIT}" > /dev/null
-
 
 # Get the current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
@@ -50,10 +48,12 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 # Get the number of commits behind the remote
 behind=$(git rev-list --count $branch..origin/$branch)
 
+
 # Print the results
 if [ "$behind" -gt 0 ]; then
   echo "Your local branch is $behind commits behind the remote. Updating..."
-  git pull
+  git checkout --quiet "${PROTO_SUBMODULE_COMMIT}" > /dev/null
+  git pull --quiet
   exit 0
 else
   echo "Your local branch is up to date with the remote."
