@@ -3,16 +3,21 @@ import * as _m0 from "protobufjs/minimal";
 
 export interface TestMessage {
   fieldOne: string;
+  /** add comment */
+  fieldTwo: string;
 }
 
 function createBaseTestMessage(): TestMessage {
-  return { fieldOne: "" };
+  return { fieldOne: "", fieldTwo: "" };
 }
 
 export const TestMessage = {
   encode(message: TestMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.fieldOne !== "") {
       writer.uint32(10).string(message.fieldOne);
+    }
+    if (message.fieldTwo !== "") {
+      writer.uint32(18).string(message.fieldTwo);
     }
     return writer;
   },
@@ -31,6 +36,13 @@ export const TestMessage = {
 
           message.fieldOne = reader.string();
           continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.fieldTwo = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -41,13 +53,19 @@ export const TestMessage = {
   },
 
   fromJSON(object: any): TestMessage {
-    return { fieldOne: isSet(object.fieldOne) ? globalThis.String(object.fieldOne) : "" };
+    return {
+      fieldOne: isSet(object.fieldOne) ? globalThis.String(object.fieldOne) : "",
+      fieldTwo: isSet(object.fieldTwo) ? globalThis.String(object.fieldTwo) : "",
+    };
   },
 
   toJSON(message: TestMessage): unknown {
     const obj: any = {};
     if (message.fieldOne !== "") {
       obj.fieldOne = message.fieldOne;
+    }
+    if (message.fieldTwo !== "") {
+      obj.fieldTwo = message.fieldTwo;
     }
     return obj;
   },
@@ -58,6 +76,7 @@ export const TestMessage = {
   fromPartial<I extends Exact<DeepPartial<TestMessage>, I>>(object: I): TestMessage {
     const message = createBaseTestMessage();
     message.fieldOne = object.fieldOne ?? "";
+    message.fieldTwo = object.fieldTwo ?? "";
     return message;
   },
 };

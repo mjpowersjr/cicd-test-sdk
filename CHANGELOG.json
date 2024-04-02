@@ -1,0 +1,20 @@
+{
+  "name": "@mjpowersjr/cicd-test-sdk",
+  "entries": [
+    {
+      "date": "Tue, 02 Apr 2024 17:48:13 GMT",
+      "version": null,
+      "tag": "@mjpowersjr/cicd-test-sdk_vnull",
+      "comments": {
+        "patch": [
+          {
+            "author": "mjpowersjr@gmail.com",
+            "package": "@mjpowersjr/cicd-test-sdk",
+            "commit": "52b2ebfa3b4a8e67855265b41ed345d460aed43b",
+            "comment": "update build output settings"
+          }
+        ]
+      }
+    }
+  ]
+}
