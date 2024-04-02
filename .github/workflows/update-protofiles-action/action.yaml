@@ -19,7 +19,7 @@ runs:
         SUBMODULE_PATH: proto-submodule
         SUBMODULE_URL: https://github.com/mjpowersjr/cicd-test-protos
         CHECKOUT_TARGET: main
-      run: scripts/update-submodule.sh
+      run: scripts/update-submodule.sh $SUBMODULE_PATH $SUBMODULE_URL $CHECKOUT_TARGET
 
     # - name: Check exit code
     #   shell: bash

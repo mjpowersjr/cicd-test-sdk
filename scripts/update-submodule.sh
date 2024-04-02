@@ -15,7 +15,7 @@ if [ -d "$SUBMODULE_PATH/.git" ]; then
     echo "Submodule at $SUBMODULE_PATH already exists."
 else
     # Add the submodule if it doesn't exist
-    git submodule add $SUBMODULE_URL $SUBMODULE_PATH
+    git submodule add --force $SUBMODULE_URL $SUBMODULE_PATH
     if [ $? -ne 0 ]; then
         echo "Failed to add submodule."
         exit 1
