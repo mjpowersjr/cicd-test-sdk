@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "docs: Added description to package.json",
-  "packageName": "@mjpowersjr/cicd-test-sdk",
-  "email": "mjpowersjr@gmail.com",
-  "dependentChangeType": "patch"
-}

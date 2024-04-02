@@ -2,6 +2,27 @@
   "name": "@mjpowersjr/cicd-test-sdk",
   "entries": [
     {
+      "date": "Tue, 02 Apr 2024 19:13:27 GMT",
+      "version": "0.0.6",
+      "tag": "@mjpowersjr/cicd-test-sdk_v0.0.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "mjpowersjr@gmail.com",
+            "package": "@mjpowersjr/cicd-test-sdk",
+            "commit": "4591086b6853986af8c0a0224ff19eab7aa8f94f",
+            "comment": "docs: Added description to package.json"
+          },
+          {
+            "author": "noreply@github.com",
+            "package": "@mjpowersjr/cicd-test-sdk",
+            "commit": "4591086b6853986af8c0a0224ff19eab7aa8f94f",
+            "comment": "updated generated code"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 02 Apr 2024 19:08:23 GMT",
       "version": "0.0.5",
       "tag": "@mjpowersjr/cicd-test-sdk_v0.0.5",

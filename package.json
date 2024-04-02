@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/mjpowersjr/cicd-test-sdk.git"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "build": "npm run clean && tsc && npm run build:after",
     "build:after": "./scripts/build-copy-protofiles.sh",
