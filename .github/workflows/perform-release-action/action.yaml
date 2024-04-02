@@ -1,5 +1,6 @@
 name: perform-release
 description: Perform a release
+
 inputs:
   token:
     description: 'A Github Token'

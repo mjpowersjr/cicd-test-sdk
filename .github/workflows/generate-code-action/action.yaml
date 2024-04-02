@@ -1,6 +1,14 @@
 name: generate-code
 description: Generate code from protofiles
 
+inputs:
+  source:
+    description: 'Profofile input directory'
+    required: true
+  output: 
+    description: 'Generated TS output directory'
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -35,11 +43,11 @@ runs:
     - name: Run build-generate-code.sh
       shell: bash
       env:
-        SRC_DIR: proto-submodule
-        OUT_DIR: src/generated
+        SRC_DIR: ${{ inputs.source }}
+        OUT_DIR: ${{ inputs.output }}
       run: |
         scripts/build-generate-code.sh $SRC_DIR $OUT_DIR
-        git commit -am "update generated code"
+        git commit -am "Update generated code"
 
     - name: Generate change files
       shell: bash

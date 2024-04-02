@@ -1,6 +1,18 @@
 name: update-protofiles
 description: Update protofiles submodule
 
+inputs:
+  submodule_path:
+    description: 'A path to the submodule directory'
+    required: true
+  submodule_url:
+    description: 'A URL to the submodule repository'
+    required: true
+  checkout_target:
+    description: 'A branch or tag to checkout'
+    required: true
+
+
 runs:
   using: 'composite'
   steps:
@@ -12,7 +24,7 @@ runs:
     - name: Run pull-protofile-submodule.sh
       shell: bash
       env:
-        SUBMODULE_PATH: proto-submodule
-        SUBMODULE_URL: https://github.com/mjpowersjr/cicd-test-protos
-        CHECKOUT_TARGET: main
+        SUBMODULE_PATH: ${{ inputs.submodule_path }}
+        SUBMODULE_URL: ${{ inputs.submodule_url }}
+        CHECKOUT_TARGET: ${{ inputs.checkout_target }}
       run: scripts/update-submodule.sh $SUBMODULE_PATH $SUBMODULE_URL $CHECKOUT_TARGET

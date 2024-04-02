@@ -1,0 +1,41 @@
+name: Release (Update Protofiles)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release-update-protofiles:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Load common.env
+        uses: ./.github/workflows/load-env-file-action
+        with:
+          envFile: .github/variables/common.env
+
+      - name: Setup Git Credentials
+        uses: ./.github/workflows/setup-git-credentials-action
+
+      - name: Update .protofile's
+        uses: ./.github/workflows/update-protofiles-action
+        with:
+          submodule_path: ${{ env.PROTOFILES_SUBMODULE_PATH }}
+          submodule_url: ${{ env.PROTOFILES_SUBMODULE_URL }}
+          checkout_target: ${{ env.PROTOFILES_CHECKOUT_TARGET }}
+
+      - name: Generate Code
+        uses: ./.github/workflows/generate-code-action
+        with:
+          source: ${{ env.PROTOFILES_SUBMODULE_PATH }}
+          output: ${{ env.TS_PROTO_OUTPUT_PATH }}
+
+      - name: Perform Release
+        uses: ./.github/workflows/perform-release-action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

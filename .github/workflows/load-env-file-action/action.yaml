@@ -1,0 +1,15 @@
+name: 'Load environment variables from a .env file'
+description: 'Configures environment variables for a workflow'
+
+inputs:
+  envFile:
+    description: 'File path to variable file or directory. Defaults to ./.github/variables/* if none specified and runs against each file in that directory.'
+    required: false
+    default: ./.github/variables/*
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        sed "" ${{ inputs.envFile }} >> $GITHUB_ENV
+      shell: bash

@@ -1,0 +1,28 @@
+name: Release (Local Changes)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release-update-protofiles:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Load common.env
+        uses: ./.github/workflows/load-env-file-action
+        with:
+          envFile: .github/variables/common.env
+
+      - name: Setup Git Credentials
+        uses: ./.github/workflows/setup-git-credentials-action
+
+      - name: Perform Release
+        uses: ./.github/workflows/perform-release-action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
