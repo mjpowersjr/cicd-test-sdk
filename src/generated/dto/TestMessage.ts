@@ -5,6 +5,7 @@ export interface TestMessage {
   fieldOne: string;
   /** add comment */
   fieldTwo: string;
+  /** Add comment */
   fieldThree: string;
 }
 
