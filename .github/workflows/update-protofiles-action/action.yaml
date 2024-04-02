@@ -7,9 +7,9 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run pull-protos-submodule.sh
+    - name: Run pull-protofile-submodule.sh
       shell: bash
-      run: scripts/pull-protos-submodule.sh
+      run: scripts/pull-protofile-submodule.sh
 
     # - name: Check exit code
     #   shell: bash
