@@ -11,7 +11,6 @@
 # Exit codes:
 # 0 - Successfully updated the submodule
 # 1 - Error
-# 2 - No Changes - Local branch is up to date with the remote
 
 set -e
 
@@ -58,5 +57,5 @@ if [ "$behind" -gt 0 ]; then
   exit 0
 else
   echo "Your local branch is up to date with the remote."
-  exit 2
+  exit 0
 fi
