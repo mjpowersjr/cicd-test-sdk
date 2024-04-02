@@ -1,5 +1,9 @@
 name: perform-release
 description: Perform a release
+inputs:
+  token:
+    description: 'A Github Token'
+    required: true
 
 runs:
   using: composite
@@ -42,7 +46,7 @@ runs:
     - name: Create release
       shell: bash
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ inputs.token }}
       run: |
         yarn beachball change --all --type patch --message 'updated generated code'
         git push

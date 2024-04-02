@@ -25,3 +25,5 @@ jobs:
 
       - name: perform-release
         uses: ./.github/workflows/perform-release-action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
