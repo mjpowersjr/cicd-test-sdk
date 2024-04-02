@@ -6,6 +6,9 @@ on:
 jobs:
   release-from-protos:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout code
